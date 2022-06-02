@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import OtherInfo from "./OtherInfo";
 import PersonalIfo from "./PersonalInfo";
 import SignUpInfo from "./SignUpInfo";
+import ValidForm from "./UI/ValidForm";
 import "../App.css";
 
 function Form(props) {
+  const [error, setError] = useState();
   const [page, setPage] = useState(0);
   const [formData, setFormData] = useState({
     email: "",
@@ -22,15 +24,51 @@ function Form(props) {
 
   const movePrevHandler = () => setPage((prevPage) => prevPage - 1);
   const moveNextHandler = () => setPage((prevPage) => prevPage + 1);
+
   const submitHandler = () => {
-    console.log(formData)
+    /****** checking if form is valid ******/
+    for (const iterator in formData) {
+      if (formData[iterator].length === 0){
+        setError({
+          title: "Invalid input",
+          message: "Please dont leave inputs empty",
+        });
+        return;
+      }
+    }
+    if(formData.password.trim().toString() !== formData.confirmPassword.trim().toString()){
+      setError({
+        title: 'Invalid password',
+        message: 'Passwords do not match, Enter same words as password'
+      })
+      return
+    }
+    else {
+      setError({
+        title: 'Form submitted',
+        message: 'Thank you for registering'
+      })
+    }
+
+    /****** cleaning up obj ******/
+    setFormData({
+      email: "",
+      password: "",
+      confirmPassword: "",
+      firstName: "",
+      lastName: "",
+      username: "",
+      nationality: "",
+      other: "",
+    });
   };
 
   const checkPage = () => {
-    if(page === FormTitles.length - 1) submitHandler();
+    if (page === FormTitles.length - 1) submitHandler();
     else moveNextHandler();
   };
 
+  /****** changind pages ******/
   const formHandler = () => {
     if (page === 0)
       return <SignUpInfo formData={formData} setFormData={setFormData} />;
@@ -40,8 +78,11 @@ function Form(props) {
       return <OtherInfo formData={formData} setFormData={setFormData} />;
   };
 
+  const errorHandler = () => setError(null);
+
   return (
     <div className="form">
+      {error && <ValidForm onConfirm={errorHandler} title={error.title} message={error.message}/>}
       <div className="progressbar">
         <div
           style={{
