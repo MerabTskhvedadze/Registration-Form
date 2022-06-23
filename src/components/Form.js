@@ -33,6 +33,7 @@ function Form(props) {
           title: "Invalid input",
           message: "Please dont leave inputs empty",
         });
+        console.log(formData[iterator]);
         return;
       }
     }
