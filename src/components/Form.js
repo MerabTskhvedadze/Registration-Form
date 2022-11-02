@@ -26,7 +26,6 @@ function Form(props) {
   const moveNextHandler = () => setPage((prevPage) => prevPage + 1);
 
   const submitHandler = () => {
-    /****** checking if form is valid ******/
     for (const iterator in formData) {
       if (formData[iterator].length === 0){
         setError({
@@ -51,7 +50,6 @@ function Form(props) {
       })
     }
 
-    /****** cleaning up obj ******/
     setFormData({
       email: "",
       password: "",
@@ -69,7 +67,6 @@ function Form(props) {
     else moveNextHandler();
   };
 
-  /****** changind pages ******/
   const formHandler = () => {
     if (page === 0)
       return <SignUpInfo formData={formData} setFormData={setFormData} />;
