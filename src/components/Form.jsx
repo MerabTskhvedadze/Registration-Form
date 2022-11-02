@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import OtherInfo from "./OtherInfo";
 import PersonalIfo from "./PersonalInfo";
@@ -32,7 +32,6 @@ function Form(props) {
           title: "Invalid input",
           message: "Please dont leave inputs empty",
         });
-        console.log(formData[iterator]);
         return;
       }
     }
@@ -55,7 +54,7 @@ function Form(props) {
   };
 
   const checkPage = () => {
-    if (page === FormTitles.length - 1) submitHandler();
+    if (page === 2) submitHandler();
     else moveNextHandler();
   };
 
@@ -95,9 +94,7 @@ function Form(props) {
           <button disabled={page === 0} onClick={movePrevHandler}>
             Prev
           </button>
-          <button onClick={checkPage}>
-            {page === FormTitles.length - 1 ? "Submit" : "Next"}
-          </button>
+          <button onClick={checkPage}>{page === 2 ? "Submit" : "Next"}</button>
         </div>
       </div>
     </div>
