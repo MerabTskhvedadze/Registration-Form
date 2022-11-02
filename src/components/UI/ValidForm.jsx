@@ -6,7 +6,7 @@ function ValidForm (props) {
     <div>
       <div className='backdrop' onClick={props.onConfirm}/>
       <div className='modal card'>
-        <header className='shmeader'>
+        <header className='title'>
           <h2>{props.title}</h2>
         </header>
         <div className='content'><h3>{props.message}</h3></div>

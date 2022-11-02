@@ -27,7 +27,7 @@ function Form(props) {
 
   const submitHandler = () => {
     for (const iterator in formData) {
-      if (formData[iterator].length === 0){
+      if (formData[iterator].length === 0) {
         setError({
           title: "Invalid input",
           message: "Please dont leave inputs empty",
@@ -36,19 +36,11 @@ function Form(props) {
         return;
       }
     }
-    if(formData.password.trim().toString() !== formData.confirmPassword.trim().toString()){
-      setError({
-        title: 'Invalid password',
-        message: 'Passwords do not match, Enter same words as password'
-      })
-      return
-    }
-    else {
-      setError({
-        title: 'Form submitted',
-        message: 'Thank you for registering'
-      })
-    }
+
+    setError({
+      title: "Congradulations",
+      message: "Your form submitted succesesfully",
+    });
 
     setFormData({
       email: "",
@@ -80,7 +72,13 @@ function Form(props) {
 
   return (
     <div className="form">
-      {error && <ValidForm onConfirm={errorHandler} title={error.title} message={error.message}/>}
+      {error && (
+        <ValidForm
+          onConfirm={errorHandler}
+          title={error.title}
+          message={error.message}
+        />
+      )}
       <div className="progressbar">
         <div
           style={{

@@ -17,12 +17,12 @@
   overflow: hidden;
 }
 
-.shmeader {
+.title {
   background: #4f005f;
   padding: 1rem;
 }
 
-.shmeader h2 {
+.title h2 {
   margin: 0;
   color: white;
 }
