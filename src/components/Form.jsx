@@ -38,7 +38,7 @@ function Form(props) {
 
     setError({
       title: "Congradulations",
-      message: "Your form submitted succesesfully",
+      message: "Your form submitted successfully",
     });
 
     setFormData({
